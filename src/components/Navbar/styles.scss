@@ -1,0 +1,55 @@
+.container-navbar {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.navbar-brand {
+  display: flex;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  height: 98px;
+  background: #ffffff;
+  box-shadow: 0px 3px 6px #00000029;
+}
+
+.navbar-logo {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 425px) {
+    width: 60%;
+  }
+}
+
+.navbar-button {
+  width: 20%;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 425px) {
+    width: 40%;
+  }
+
+  a:hover {
+    cursor: pointer;
+    background: #199ce8;
+    color: #ffffff;
+  }
+}
+.navbar-button a {
+  width: 80%;
+  height: 36px;
+  padding: 5px;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #199ce8;
+  border-radius: 30px;
+  font: Segoe UI bold;
+  color: #199ce8;
+}
