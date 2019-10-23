@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import * as Yup from "yup";
 import { Container, Title, Content, Image } from "./styles";
 import { Input, Form } from "@rocketseat/unform";
-import { Redirect } from "react-router";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -72,8 +71,7 @@ export default function SectionForm(props) {
           </Form>
         ) : (
           <Title>
-            Assim que a versão beta da <img src={lunna} /> sair você será um dos
-            primeiros a testar e poderá ganhar 3 meses de Premium!
+            Seja Bem-vindo ao <img src={lunna} /> Beta!
           </Title>
         )}
       </Content>
