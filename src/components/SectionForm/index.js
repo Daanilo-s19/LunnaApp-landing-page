@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import * as Yup from "yup";
+import api from "../../services/api";
 import { Container, Title, Content, Image } from "./styles";
 import { Input, Form } from "@rocketseat/unform";
 import { toast } from "react-toastify";
@@ -9,39 +10,53 @@ import lunna from "../../assets/Lunna.png";
 
 toast.configure();
 
-const Schema = Yup.object().shape({
-  nome: Yup.string().required(() => {
-    toast.warn("Preencha o Campo nome");
-  }),
-  sobrenome: Yup.string().required(() => {
-    toast.warn("Preencha o Campo nome");
-  }),
-  email: Yup.string()
-    .email(() => {
-      toast.error("Insira um e-mail válido.");
-    })
-    .required(() => {
-      toast.warn("Preencha o campo Email ");
-    }),
-  profissao: Yup.string().required(() => {
-    toast.warn("Preencha o campo profissão.");
-  }),
-  amigo: Yup.string()
-    .email(() => {
-      toast.error("Insira um e-mail válido.");
-    })
-    .required(() => {
-      toast.warn("Preencha o campo e-mail.");
-    })
-});
-
 export default function SectionForm(props) {
   const [success, setSuccess] = useState([false]);
   const { icon, id } = props;
 
-  const handleSubmit = () => {
-    toast.success("Sucessão");
-    setSuccess(false);
+  const Schema = Yup.object().shape({
+    nome: Yup.string().required(() => {
+      toast.warn("Preencha o Campo Nome");
+    }),
+    sobrenome: Yup.string().required(() => {
+      toast.warn("Preencha o Campo Sobrenome");
+    }),
+    email: Yup.string()
+      .email(() => {
+        toast.error("Insira um E-mail válido.");
+      })
+      .required(() => {
+        toast.warn("Preencha o campo Email ");
+      }),
+    profissao: Yup.string().required(() => {
+      toast.warn("Preencha o campo profissão.");
+    }),
+    amigo: Yup.string()
+      .email(() => {
+        toast.error("Insira um e-mail válido.");
+      })
+      .required(() => {
+        toast.warn("Preencha o campo e-mail.");
+      })
+  });
+
+  const handleSubmit = value => {
+    api
+      .post("/meta", {
+        first_name: value.nome,
+        last_name: value.sobrenome,
+        email: value.email,
+        ocupation: value.profissao,
+        friends: value.amigo
+      })
+      .then(function(response) {
+        toast.success("Sucesso!");
+        setSuccess(false);
+        console.log(response);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   };
   return (
     <Container id={id}>
