@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import api from "../../services/api";
 import { Container, Title, Content, Image } from "./styles";
 import { Input, Form } from "@rocketseat/unform";
+import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -11,14 +12,13 @@ import lunna from "../../assets/Lunna.png";
 toast.configure();
 
 export default function SectionForm(props) {
-  const [success, setSuccess] = useState([false]);
-  const { icon, id } = props;
+  const { icon, id, token } = props;
 
   const Schema = Yup.object().shape({
-    nome: Yup.string().required(() => {
+    first_name: Yup.string().required(() => {
       toast.warn("Preencha o Campo Nome");
     }),
-    sobrenome: Yup.string().required(() => {
+    last_name: Yup.string().required(() => {
       toast.warn("Preencha o Campo Sobrenome");
     }),
     email: Yup.string()
@@ -28,34 +28,41 @@ export default function SectionForm(props) {
       .required(() => {
         toast.warn("Preencha o campo Email ");
       }),
-    profissao: Yup.string().required(() => {
+    role: Yup.string().required(() => {
       toast.warn("Preencha o campo profissão.");
     }),
-    amigo: Yup.string()
+    invite: Yup.string()
       .email(() => {
         toast.error("Insira um e-mail válido.");
       })
       .required(() => {
         toast.warn("Preencha o campo e-mail.");
-      })
+      }),
+    invite_from: Yup.string().notRequired()
   });
-
+  const initialdata = {
+    invite_from: null
+  };
   const handleSubmit = value => {
     api
-      .post("/meta", {
-        first_name: value.nome,
-        last_name: value.sobrenome,
-        email: value.email,
-        ocupation: value.profissao,
-        friends: value.amigo
-      })
+      .post("/subscribe", value)
       .then(function(response) {
-        toast.success("Sucesso!");
-        setSuccess(false);
-        console.log(response);
+        Swal.fire({
+          position: "center-top",
+          type: "success",
+          title: "Entre no seu email e ative para ter acesso ao",
+          showConfirmButton: false,
+          timer: 2000
+        });
       })
       .catch(function(error) {
-        console.log(error);
+        Swal.fire({
+          type: "warning",
+          title: "Ocorreu um erro!",
+          footer: " tente novamente mais tarde !",
+          showConfirmButton: false,
+          timer: 3000
+        });
       });
   };
   return (
@@ -66,29 +73,24 @@ export default function SectionForm(props) {
       </Title>
       <Content>
         <Image src={icon} />
-        {success ? (
-          <Form schema={Schema} onSubmit={handleSubmit}>
-            <h2>Se inscreva e indique um amigo!</h2>
-            <div>
-              <Input type="text" name="nome" placeholder="Nome" />
-              <Input type="text" name="sobrenome" placeholder="Sobrenome" />
-            </div>
-            <Input type="email" name="email" placeholder="E-mail de trabalho" />
-            <Input type="text" name="profissao" placeholder="Profissão" />
-            <Input
-              type="email"
-              name="amigo"
-              placeholder="Indique o e-mail de um amigo"
-            />
-            <button type="submit">
-              Quero ter uma gestão eficiente de projetos!
-            </button>
-          </Form>
-        ) : (
-          <Title>
-            Seja Bem-vindo ao <img src={lunna} /> Beta!
-          </Title>
-        )}
+        <Form schema={Schema} onSubmit={handleSubmit} initialData={initialdata}>
+          <h2>Se inscreva e indique um amigo!</h2>
+          <div>
+            <Input type="text" name="first_name" placeholder="Nome" />
+            <Input type="text" name="last_name" placeholder="Sobrenome" />
+          </div>
+          <Input type="email" name="email" placeholder="E-mail de trabalho" />
+          <Input type="text" name="role" placeholder="Profissão" />
+          <Input
+            type="email"
+            name="invite"
+            placeholder="Indique o e-mail de um amigo"
+          />
+          <Input type="hidden" name="invite_from" value={token} />
+          <button type="submit">
+            Quero ter uma gestão eficiente de projetos!
+          </button>
+        </Form>
       </Content>
     </Container>
   );

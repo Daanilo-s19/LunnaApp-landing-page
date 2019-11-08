@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import HeroSection from "./../../components/HeroSection";
 import ClientsSection from "./../../components/ClientsSection";
 import SectionDesc from "../../components/SectionDesc";
 import PriceSection from "../../components/PriceSection";
 import SectionForm from "../../components/SectionForm";
+import Footer from "./../../components/Footer";
 import "./styles.scss";
 
 import calendar from "../../assets/calendario.svg";
@@ -13,15 +14,21 @@ import agenda from "../../assets/agenda.svg";
 import lunna from "../../assets/Lunna.png";
 import subscription from "../../assets/subscription.png";
 import section1 from "../../assets/section1-2x.png";
+import lunnaFooter from "../../assets/lunnaFooter2x.png";
 
 function HomePage(props) {
+  const {
+    location: { hash }
+  } = props;
+  const inviteToken = hash.split("/");
+
   return (
     <>
       <HeroSection
         color="white"
         size="medium"
         title="Ser Freela nunca foi tão fácil!"
-        subtitle="Feramenta 100% voltada para freelancers, com gestão de equipes e comunicação integrada com o cliente."
+        subtitle="Ferramenta 100% voltada para freelancers, com gestão de equipes e comunicação integrada com o cliente."
         buttonText="Saiba mais"
         image={section1}
         href="#price"
@@ -82,7 +89,12 @@ function HomePage(props) {
         ]}
       />
 
-      <SectionForm id="form" icon={subscription} />
+      <SectionForm id="form" icon={subscription} token={inviteToken[1]} />
+      <Footer
+        copyright=" LUNNA, UMA PLATAFORMA DA SPACE ROCKET DESIGN E TECNOLOGIA.COPYRIGHT ©
+           2019. TODOS OS DIREITOS RESERVADOS."
+        logo={lunnaFooter}
+      />
     </>
   );
 }

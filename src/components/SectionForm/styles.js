@@ -25,7 +25,7 @@ export const Title = styled.h2`
 export const Content = styled.div`
   display: flex;
   width: 100%;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-direction: row;
   margin: 30px 0 20px;
 
@@ -42,7 +42,7 @@ export const Content = styled.div`
     align-items: center;
 
     div {
-      width: 90%;
+      width: 80%;
       display: flex;
       input:last-child {
         margin-right: 0;
@@ -60,7 +60,7 @@ export const Content = styled.div`
       color: #707070;
     }
     input {
-      width: 90%;
+      width: 80%;
       height: 50px;
       background: #ffffff;
       border: 1px solid #b1b0b0;
@@ -74,7 +74,7 @@ export const Content = styled.div`
     }
 
     button {
-      width: 90%;
+      width: 80%;
       height: 42px;
       background: #199ce8;
       border-radius: 10px;

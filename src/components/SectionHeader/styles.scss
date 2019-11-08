@@ -1,5 +1,5 @@
 .SectionHeader__header {
-  margin-bottom: 5px;
+  margin-bottom: auto;
   // Remove margin if nothing after header
   &:last-child {
     margin-bottom: 0;
@@ -19,17 +19,22 @@
 }
 .titleSection {
   width: auto;
-  text-align: left;
-  font: 41px Segoe UI;
+  margin: 15px;
+  text-align: center;
+  font-size: 41px;
+  white-space: nowrap;
   color: #707070;
   @media (max-width: 425px) {
-    text-align: center;
+    white-space: normal;
   }
 }
 .subtitleSection {
   height: 64px;
+  margin: 10px;
   text-align: center;
-  font: Regular 24px Segoe UI;
+  font: 24px Segoe UI;
   color: #707070;
-  opacity: 1;
+  @media (max-width: 425px) {
+    font-size: 15px;
+  }
 }

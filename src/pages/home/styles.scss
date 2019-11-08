@@ -1,0 +1,6 @@
+.navbar {
+  position: fixed;
+  @media (max-width: 414px) {
+    position: relative;
+  }
+}
