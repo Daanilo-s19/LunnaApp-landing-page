@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import borderContainer from "../../assets/borderContainer.png";
-import { device, size } from "../../styles";
+import { device } from "../../styles";
 
 export const Container = styled.div`
   width: 100%;

@@ -4,7 +4,6 @@ import { Redirect } from "react-router-dom";
 import Swal from "sweetalert2";
 import Api from "../../services/api";
 
-import lunna from "../../assets/Lunna.png";
 import logo from "../../assets/logo.png";
 function ActivatePage(props) {
   const {
@@ -15,7 +14,7 @@ function ActivatePage(props) {
   const ActivateSucess = () => {
     return Swal.fire({
       title: "Parabéns!",
-      text: "Você está pronto para testar a fazer beta do Lunna",
+      text: "Você está pronto para testar a fase beta do Lunna",
       imageUrl: logo,
       imageWidth: 200,
       imageHeight: 222,
@@ -46,7 +45,7 @@ function ActivatePage(props) {
         ActivateFailed();
         setRedirect(true);
       });
-  }, []);
+  }, [search]);
   return redirect && <Redirect to="/" />;
 }
 export default ActivatePage;

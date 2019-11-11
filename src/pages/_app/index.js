@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "./../../components/Navbar";
 import HomePage from "./../home";
 import ActivatePage from "./../activate";
+import NotFound from "./../NotFound";
 import { Switch, Route, Router } from "./../../util/router.js";
 import { ProvideAuth } from "./../../util/auth.js";
 import "./styles.scss";
@@ -16,25 +17,8 @@ function App(props) {
 
           <Switch>
             <Route exact path="/" component={HomePage} />
-
-            <Route path="/activate" component={ActivatePage} />
-
-            <Route
-              component={({ location }) => {
-                return (
-                  <div
-                    style={{
-                      padding: "50px",
-                      width: "100%",
-                      textAlign: "center"
-                    }}
-                  >
-                    The page <code>{location.pathname}</code> could not be
-                    found.
-                  </div>
-                );
-              }}
-            />
+            <Route exact path="/activate" component={ActivatePage} />
+            <Route component={NotFound} />
           </Switch>
         </>
       </Router>

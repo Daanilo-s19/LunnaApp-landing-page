@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import * as Yup from "yup";
 import api from "../../services/api";
 import { Container, Title, Content, Image } from "./styles";
@@ -50,7 +50,7 @@ export default function SectionForm(props) {
         Swal.fire({
           position: "center-top",
           type: "success",
-          title: "Entre no seu email e ative para ter acesso ao",
+          title: "Entre no seu email e ative para ter acesso ao Lunna",
           showConfirmButton: false,
           timer: 2000
         });
@@ -68,8 +68,8 @@ export default function SectionForm(props) {
   return (
     <Container id={id}>
       <Title>
-        Assim que a versão beta da <img src={lunna} /> sair você será um dos
-        primeiros a testar e poderá ganhar 3 meses de Premium!
+        Assim que a versão beta da <img src={lunna} alt="Lunna" /> sair você
+        será um dos primeiros a testar e poderá ganhar 3 meses de Premium!
       </Title>
       <Content>
         <Image src={icon} />

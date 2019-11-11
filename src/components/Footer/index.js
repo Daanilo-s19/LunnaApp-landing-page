@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "./../../util/router.js";
 import { Container, Copyright } from "./styles.js";
 import { Icon } from "../SectionDesc/styles.js";
 
