@@ -51,8 +51,7 @@ export default function SectionForm(props) {
           position: "center-top",
           type: "success",
           title: "Entre no seu email e ative para ter acesso ao Lunna",
-          showConfirmButton: false,
-          timer: 2000
+          showConfirmButton: true
         });
       })
       .catch(function(error) {

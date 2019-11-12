@@ -59,7 +59,7 @@ function HomePage(props) {
         ]}
       />
       <ClientsSection id="price">
-        Experimente a maneira mais simples de gerenciar negócios!
+        Experimente a maneira mais simples de gerenciar projetos!
       </ClientsSection>
       <PriceSection
         price={[

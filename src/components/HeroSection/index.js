@@ -16,7 +16,7 @@ function HeroSection(props) {
               size={1}
             />
             <a href={props.href}>
-              <SectionButton parentColor={props.color} size="medium">
+              <SectionButton parentColor={props.color} size="small">
                 {props.buttonText}
               </SectionButton>
             </a>
